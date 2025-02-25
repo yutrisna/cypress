@@ -2,7 +2,7 @@
 
 import LoginPage from '../pages/LoginPage';
 
-describe('OrangeHRM Login', () => {
+describe('SauceLab Login', () => {
     const loginPage = new LoginPage();
 
     it('should log in with valid credentials', () => {
