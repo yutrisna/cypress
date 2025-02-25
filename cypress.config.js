@@ -5,7 +5,7 @@ module.exports = defineConfig({
     baseUrl: 'https://www.saucedemo.com/',  // Ensure there's no trailing slash
     specPattern: 'cypress/e2e/*.cy.js', // Correct pattern for test files
   },
-  projectId: "p8byg8",
+  projectId: "p8byg8", //connect to Cypress Dashboard
 });
 
 // module.exports = defineConfig({
