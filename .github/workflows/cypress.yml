@@ -1,6 +1,14 @@
 name: Cypress Tests
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:  # Menambahkan agar tombol "Run Workflow" muncul di GitHub Actions
+    inputs:
+      browser:
+        description: 'Browser to run Cypress tests (chrome, firefox, edge)'
+        required: true
+        default: 'chrome'
 
 jobs:
   cypress-run:
@@ -24,8 +32,14 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
 
+      - name: Install Chrome
+        run: sudo apt-get install -y google-chrome-stable
+
+      - name: Install Firefox
+        run: sudo apt-get install -y firefox
+
       - name: Run Cypress tests
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npx cypress run --browser ${{ github.event.inputs.browser || 'chrome' }} --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
 
 env:
   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
